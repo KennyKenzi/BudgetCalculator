@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <!-- <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css"> -->
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="top" >
+            
+            <div>
+                <h1 class="title">BUDGET APP</h1>
+            </div>
+            <div class= income_total>
+                <div class="name">INCOME:</div>    
+                <div class="i_number">125,000</div>  
+
+            </div>
+            <div class= expense_total>
+                    <div class="name">EXPENSE:</div>    
+                    <div class="e_number">5,000</div>  
+    
+            </div>
+            <div class ="budget_display">+ ₦120,000</div>
+        </div>
+        <div class="bottom">
+            <div class="input_container">
+                <div class="type_container" >
+                    <select class=types>
+                        <option value="placeholder">Select-an-Option</option>
+                        <option value="Plus">+</option>
+                        <option value="Minus">-</option>        
+                    </select>    
+                </div>
+                <div class="item_container">
+                    <input type="text" class="item_name" placeholder="Add an Item" id="item_name" name="">
+                </div>
+                <div class="cost_container">
+                    <input type="text" class="cost" placeholder="Enter a value" id="cost"  name="">
+                </div>
+            </div>
+            <div >
+                    <input type="button" class="ok_button" value="OK" id=""  name="">
+            </div>
+
+            <div class="incexp_container">
+                <div class="income_container">
+                    <div><h2><u>INCOME</u></h2></div>
+                    <!-- <div class="ingoes">
+                    <div class="zitem">Salary</div>
+                    <div class="nix">
+                        <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
+                    </div>
+                    <div class="zamount">+20000</div>
+                    </div> -->
+                </div>
+
+                <div class="expense_container">
+                    <h2><u>EXPENSE</u></h2>
+                    <!-- <div class="ingoes">
+                    <div>Salary</div>
+                    <div>+20000</div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="budget.js"></script>
+</body>

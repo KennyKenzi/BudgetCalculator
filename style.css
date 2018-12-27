@@ -1,0 +1,173 @@
+.container{ 
+    height: auto;
+    width: auto;
+    
+    
+}
+
+.top{
+    background-image: repeating-linear-gradient(black,white,silver);
+    border: 2px outset black;  
+    background-repeat: no-repeat;
+    border-bottom: none;
+    height: auto;
+    width: auto;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px
+
+}
+.bottom{
+    background-color: silver;
+    background-image: repeating-linear-gradient(silver,white, rgb(119, 112, 112),silver,white);
+
+    border: 2px outset black;  
+    height: auto;
+    width: auto;
+    text-align: center;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px
+
+}
+
+.title{ 
+
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 200%
+}
+
+.budget_display{ 
+
+    text-align: center;
+    font-size: 300%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+
+}
+
+.input_container{
+    
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px
+ 
+}
+.type_container, .item_container, .cost_container{
+
+    border: 1px outset black; 
+    position: relative;
+    display: inline-block; 
+
+
+}
+.ok_button{
+    font-size: 120%;
+    border-radius: 10px
+}
+
+.incexp_container{
+   
+    width: unset;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: inline-block
+
+
+}
+
+.income_container, 
+.expense_container{
+height: auto;
+width: 600px ;
+color: inherit;
+position: relative;
+display: inline-block; 
+border-radius: 40px;
+
+}
+.income_container{
+    margin-right: 80px;
+}
+.income_total, .expense_total{
+
+    height: 35px;
+    width: 200px;
+    font-size: 150%;
+    display: inline-block;
+    background-color: rgb(218, 195, 165);
+    border-radius: 5px
+
+}
+
+.income_total{
+    float: left;
+    margin-left: 30px;
+    background-color: rgb(107, 223, 184);
+   
+}
+.expense_total{
+    float: right;
+    margin-right: 30px;
+    background-color: rgb(233, 167, 145)
+}
+.name{
+    float: left;
+
+}
+.number{
+    float: right;
+}
+.income_container{
+
+    
+    
+}
+.expense_container{
+
+ 
+}
+.ingoes{
+    position: relative;
+    width: 600px;
+    text-align: center
+
+}
+.zitem{
+    font-size: 140%;
+    
+}
+.zamount{
+    font-size: 100%;
+    font-weight: bold;
+   
+}
+
+.income_container .zamount{
+
+    color: rgb(70, 153, 125)
+}
+.expense_container .zamount{
+
+    color:rgb(202, 133, 109)
+}
+.nix{
+    cursor: pointer;
+    float: right;
+    vertical-align: middle;
+    line-height: 1;
+    border: none
+}
+.type_container{
+
+
+}
+.item_container{
+   
+  
+}
+.cost_container{
+ 
+    
+}
+
