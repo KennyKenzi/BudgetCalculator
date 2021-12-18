@@ -3,69 +3,97 @@
 <head>
   <link rel="stylesheet" href="style.css">
   <!-- <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="top" >
-            
+    <div class="container mt-3">
+        
+        <div class="top shadow" > 
+            <nav class="navbar d-block">
             <div>
                 <h1 class="title">BUDGET APP</h1>
             </div>
-            <div class= income_total>
-                <div class="name">INCOME:</div>    
-                <div class="i_number">125,000</div>  
-
-            </div>
-            <div class= expense_total>
-                    <div class="name">EXPENSE:</div>    
-                    <div class="e_number">5,000</div>  
-    
-            </div>
-            <div class ="budget_display">+ ₦120,000</div>
+            </nav>
+            
+            <section class="row g-0">
+                <div class= "col-md shadow" id="income_total">
+                    <div>
+                        <div class="name">INCOME: </div>    
+                        <div class="i_number float-right" id="i_number">0</div>  
+                    </div>
+                    
+                </div>
+                <div class= "col-md shadow" id="expense_total">
+                    <div>
+                        <div class="name">EXPENSE: </div>    
+                        <div class="e_number" id="e_number">0</div>  
+                    </div>
+                     
+                </div>    
+            </section>  
+            <div class ="budget_display">0</div>  
+            
         </div>
-        <div class="bottom">
-            <div class="input_container">
-                <div class="type_container" >
-                    <select class=types>
+        <div class="bottom shadow mt-2">
+
+            <div class="chart-container " width="600" height="400">
+                <canvas id="myChart" width="100%" height="100%" class="d-inline-block"></canvas>
+            </div>
+
+            <div class="input_container py-3">
+                <div class="type_container shadow" >
+                    <select class="types form-control form-control-lg">
                         <option value="placeholder">Select-an-Option</option>
                         <option value="Plus">+</option>
                         <option value="Minus">-</option>        
                     </select>    
                 </div>
-                <div class="item_container">
-                    <input type="text" class="item_name" placeholder="Add an Item" id="item_name" name="">
+                <div class="item_container shadow">
+                    <input type="text" class="item_name form-control form-control-lg" placeholder="Add an Item" id="item_name" name="">
                 </div>
-                <div class="cost_container">
-                    <input type="text" class="cost" placeholder="Enter a value" id="cost"  name="">
+                <div class="cost_container shadow">
+                    <input type="text" class="cost form-control form-control-lg" placeholder="Enter a value" id="cost"  name="">
                 </div>
             </div>
             <div >
-                    <input type="button" class="ok_button" value="OK" id=""  name="">
+                    <input type="button" class="ok_button btn-success" value="OK" id=""  name="" >
             </div>
 
-            <div class="incexp_container">
-                <div class="income_container">
+            <div class="incexp_container row m-0 gap-5 p-5">
+                <div class="container income_container col-sm">
                     <div><h2><u>INCOME</u></h2></div>
-                    <!-- <div class="ingoes">
-                    <div class="zitem">Salary</div>
-                    <div class="nix">
-                        <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
-                    </div>
-                    <div class="zamount">+20000</div>
-                    </div> -->
+                    <!-- <div class="ingoes" id="inc-&id">
+                            <div class ="zitem d-md-flex">Item 2</div>
+                                <div class="nix float-right">
+                                    <button type ="button" class="item__delete--btn btn-close"></button>
+                                </div>
+                            <div class="zamount d-md-flex">+ 90000</div>
+                        </div>
+                    -->
                 </div>
 
-                <div class="expense_container">
+
+                <div class="container expense_container col-sm">
                     <h2><u>EXPENSE</u></h2>
-                    <!-- <div class="ingoes">
-                    <div>Salary</div>
-                    <div>+20000</div>
-                    </div> -->
+
+                     <!-- <div class="ingoes" id="exp-&id">
+                        <div class ="zitem d-md-flex">Item 5</div>
+                        <div class="nix float-right">
+                            <input type ="button" class="item__delete--btn" value="x">
+                        </div>
+                        <div class="zamount d-md-flex">- 490</div>
+                     -->
                 </div>
             </div>
         </div>
     </div>
+
+   
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.2/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="budget.js"></script>
 </body>

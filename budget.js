@@ -1,3 +1,4 @@
+
 var budgetCalculator = (function(){
 
   var  Expense = function(id, item, cost){
@@ -11,7 +12,6 @@ var budgetCalculator = (function(){
     this.id =id;
     this.item =item;
     this.cost =cost;
-
   };
 
     var allExp = [];
@@ -21,8 +21,6 @@ var budgetCalculator = (function(){
 
     return{
         addItem: function(type, item, cost){
-
-        
                 var currItem, ID
                 if (type === 'Minus'){
                 ID = parseInt((allExp.length)) + 1;
@@ -38,8 +36,6 @@ var budgetCalculator = (function(){
                 return {
                     currItem
                 }
-
-
         },
 
         calcTotal: function(type, cot){
@@ -117,20 +113,13 @@ var budgetCalculator = (function(){
            }
 
 
-        }
-
-
-               
+        }         
     }
-
-    
-
 })()
 
 var UIDisplay = (function(){
 
    var DOMList = {
-
      type_c : '.types',
      item_c : '.item_name',
      cost_c : '.cost',
@@ -142,76 +131,71 @@ var UIDisplay = (function(){
      budget: '.budget_display',
      nix: '.item__delete--btn',
      container: '.incexp_container'
-
    }
 
-      return{
+    return{
+
             DOMs: function(){
              return DOMList;
             },
 
             getInput: function(){
-            return {
-                 type : document.querySelector(DOMList.type_c).value,
-                 item : document.querySelector(DOMList.item_c).value,
-                 cost : document.querySelector(DOMList.cost_c).value,  
-            }
-             
+                return {
+                    type : document.querySelector(DOMList.type_c).value,
+                    item : document.querySelector(DOMList.item_c).value,
+                    cost : document.querySelector(DOMList.cost_c).value,  
+                }
             },
 
             displayInput: function(obj, type){
+                var html, newHtml, elem
 
-            var html, newHtml, elem
+                if (type=== 'Minus'){
+                    elem  = DOMList.expense_contain
+                    html = '<div class="ingoes" id="exp-&id"><div class ="zitem d-md-flex">&item</div><div class="nix float-right"><button type ="button" class="item__delete--btn btn-close"></button></div><div class="zamount d-md-flex">- &amt</div></div>'
+                }else if(type === 'Plus'){
+                    elem = DOMList.income_contain
+                    html = '<div class="ingoes" id="inc-&id"><div class ="zitem d-md-flex">&item</div><div class="nix float-right"><button type ="button" class="item__delete--btn btn-close"></button></div><div class="zamount d-md-flex">+ &amt</div></div>'
+                }
 
-            if (type=== 'Minus'){
-                elem  = DOMList.expense_contain
-                html = '<div class="ingoes" id="exp-&id"><div class ="zitem">&item</div><div class="nix"><input type ="button" class="item__delete--btn" value="x"></div><div class="zamount">- &amt</div></div>'
+                newHtml = html.replace('&id', obj.id )
+                newHtml = newHtml.replace('&item', obj.item )
+                newHtml = newHtml.replace('&amt', obj.cost )
 
-            }else if(type === 'Plus'){
-                elem = DOMList.income_contain
-                html = '<div class="ingoes" id="inc-&id"><div class ="zitem">&item</div><div class="nix"><input type ="button" class="item__delete--btn" value = "x"></div><div class="zamount">+ &amt</div></div>'
-            }
+                document.querySelector(elem).insertAdjacentHTML('beforeend', newHtml )
+            },
 
-            newHtml = html.replace('&id', obj.id )
-            newHtml = newHtml.replace('&item', obj.item )
-            newHtml = newHtml.replace('&amt', obj.cost )
-
-            document.querySelector(elem).insertAdjacentHTML('beforeend', newHtml )
-
-        },
             displayTots: function(tots){
-
-            document.querySelector(DOMList.income_1).innerHTML = tots.totalInc
-            document.querySelector(DOMList.expense_1).innerHTML = tots.totalExp
-
+                document.querySelector(DOMList.income_1).innerHTML = tots.totalInc
+                document.querySelector(DOMList.expense_1).innerHTML = tots.totalExp
             },
 
             maindisplay: function(tots){
-            var somit = tots.totalInc - tots.totalExp;
-            document.querySelector(DOMList.budget).innerHTML = (somit)
-            
+                var somit = tots.totalInc - tots.totalExp;
+                document.querySelector(DOMList.budget).innerHTML = (somit)
+                
+                if(somit< 0){
+                    document.querySelector(DOMList.budget).id = 'negative'
+                }else{
+                    document.querySelector(DOMList.budget).id = 'positive'
+                }
+                
+
             },
 
             removeItem: function(id){
-                
                var el = document.getElementById(id)
                el.parentNode.removeChild(el)
-
             }
-
     } 
-
-
 })()
 
+
 var Controller = (function(budCalc, udisplay){
+   // myChart()
     var DOM = udisplay.DOMs();
-
     var setEventListeners = function(){
-     
-
         document.querySelector(DOM.ok_btn).addEventListener('click', okbtnclicked);
-    
         document.querySelector(DOM.container).addEventListener('click', nixbtnclicked);
     }
 
@@ -233,6 +217,7 @@ var Controller = (function(budCalc, udisplay){
          udisplay.displayTots(toast)
         //maindisplay
         udisplay.maindisplay(toast)
+        updateChart(toast)
         end()
 
     }else {
@@ -242,7 +227,6 @@ var Controller = (function(budCalc, udisplay){
 
     var nixbtnclicked = function(event){
     var itID, spit, typ, ID, finale
-
         //get id and value
         itID = (event.target.parentNode.parentNode.id)
 
@@ -262,10 +246,49 @@ var Controller = (function(budCalc, udisplay){
         udisplay.displayTots(finale);
 
         udisplay.maindisplay(finale);
-        
-
+        updateChart(toast)
 
     }
+
+    let myChart = document.getElementById('myChart').getContext('2d');
+    console.log(DOM.expense_1, DOM.income_1)
+
+
+    var randomChart = new Chart(myChart, {
+        type: 'doughnut',
+        data:{
+            labels:['Income', 'Expense'],
+            datasets:[{
+                label: 'Stuff',
+                data:[1,0],
+                backgroundColor: [
+                    'green',
+                    'crimson',]
+            }],
+            hoverOffset: 4
+        },
+        options: {
+            // responsive: false,
+            maintainAspectRatio: false
+        }
+
+    })
+
+    randomChart.canvas.parentNode.style.height = '150px';
+    randomChart.canvas.parentNode.style.width = '600px';
+   // randomChart.canvas.parentNode.style.display = 'contents'
+    //randomChart.canvas.parentNode.style
+
+    var updateChart = function(toast){
+        console.log(toast)
+       randomChart.data.datasets[0].data = [];
+       randomChart.data.datasets[0].data.push(toast.totalInc, toast.totalExp);
+       randomChart.update()
+
+       console.log(randomChart.data.datasets[0])
+    }
+
+
     var end =  function(){
         document.querySelector(DOM.type_c).value = "placeholder"
         document.querySelector(DOM.item_c).value = ""
@@ -273,19 +296,17 @@ var Controller = (function(budCalc, udisplay){
 
     }
 
-return {
-    init : function(){
-
-        document.querySelector(DOM.type_c).value = "placeholder"
-        document.querySelector(DOM.item_c).value = ""
-        document.querySelector(DOM.cost_c).value = ""
-        document.querySelector(DOM.budget).innerHTML = 0
-        document.querySelector(DOM.income_1).innerHTML = 0
-        document.querySelector(DOM.expense_1).innerHTML =0
-        setEventListeners();    
+    return {
+        init : function(){
+            document.querySelector(DOM.type_c).value = "placeholder"
+            document.querySelector(DOM.item_c).value = ""
+            document.querySelector(DOM.cost_c).value = ""
+            document.querySelector(DOM.budget).innerHTML = "  " +0
+            document.querySelector(DOM.income_1).innerHTML = "  " +0
+            document.querySelector(DOM.expense_1).innerHTML = "  " +0
+            setEventListeners();    
+        }
     }
-
-}
 
 
 })(budgetCalculator, UIDisplay)
